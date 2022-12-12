@@ -16,7 +16,7 @@ parse = "^1.19.0"
 more-itertools = "^9.0.0"
 
 [tool.poetry.dev-dependencies]
-black = "^22.10"
+black = "^22.12"
 cookiecutter = "^2.1.1"
 pytest = "^7.2.0"
 pytest-cov = "^4.0.0"
