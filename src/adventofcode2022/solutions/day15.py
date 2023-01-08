@@ -68,14 +68,16 @@ class Day15PartA(Day15, FileReaderSolution):
 
 
 class Day15PartB(Day15, FileReaderSolution):
-    def find_frequency(self, factor: int) -> int:
+    def find_frequency(self, max: int) -> int:
         """Find the tuning frequency"""
         y = 0
-        while y < factor:
+        # for y in range(max+1):
+        for y in range(11, 12):
+            # Loop over every line (y)
             print(f"New line {y}")
             x = 0
-            while x <= factor:
-                # print(f"new {x=}")
+            while x <= max:
+                # Loop over every x coordinate.
                 new_x = x
                 for line in self.lines:
                     new_x = self.skip_over_line(line, x, y)
@@ -84,17 +86,16 @@ class Day15PartB(Day15, FileReaderSolution):
                         break
                 if new_x == x:
                     # Return here?
-                    res = (x * factor) + y
-                    print(f"Result ?? {res=}")
-                    y = factor + 1
-                    break
+                    res = (x * max) + y
+                    print(f"Result ?? {res=} ({x=} , {y=}")
+                    return res
                 x = new_x
-            y += 1
-        return (x * factor) + y
+
+        raise ValueError("No known solution")
 
     def skip_over_line(self, line, x, y):
         remaining = self.remaining_on_line(line, y)
-        if x >= line.sensor.x - remaining and x <= line.sensor.x + remaining:
+        if x >= (line.sensor.x - remaining) and x <= (line.sensor.x + remaining):
             return line.sensor.x + 1
         return x
         # if line[0].x - remaining <= x <= line[0].x + remaining:
